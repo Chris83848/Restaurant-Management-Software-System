@@ -1,70 +1,63 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.*;
 import java.util.List;
 
-public class LoginSystem extends JFrame {
-    // Maps username to password
-    private final Map<String, String> loginInfo = new HashMap<>();
+public class Menu extends JPanel {
 
-    // Maps username to waiter name
-    private final Map<String, String> waiter = new HashMap<>();
+    public Menu(TableTab tab) {
+        setLayout(new GridLayout(5, 1));
 
-    // Maps waiter to their assigned tables
-    private final Map<String, List<String>> tableAssignments = new HashMap<>();
+        add(createCategory("Beverages", new String[][] {
+                {"Coffee", "2.00"},
+                {"Coke", "2.00"},
+                {"Sprite", "2.00"},
+                {"Lemonade", "2.00"}
+        }, tab));
 
-    public LoginSystem() {
-        setTitle("Waiter Login Screen");
-        setSize(350, 200);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        add(createCategory("Sandwiches", new String[][] {
+                {"Grilled Cheese", "5.50"},
+                {"100% Beef Hot Dog", "5.50"},
+                {"Chicken BLT&A", "10.00"},
+                {"Cordon Bleu", "11.00"}
+        }, tab));
 
-        JPanel panel = new JPanel(new GridLayout(3, 2, 10, 10));
-        JPanel button = new JPanel();
+        add(createCategory("Sides", new String[][] {
+                {"Curly Fries", "2.50"},
+                {"Mashed Potatoes", "2.50"},
+                {"Mac & Cheese", "2.50"},
+                {"Broccoli", "2.50"}
+        }, tab));
 
-        // Different accounts set up
-        loginInfo.put("SarahT99", "password1");
-        loginInfo.put("nicholasRoberts87", "password2");
-        loginInfo.put("emmaJ23!", "password3");
+        add(createCategory("Salads", new String[][] {
+                {"House Salad", "7.50"},
+                {"Wedge Salad", "7.50"},
+                {"Caesar Salad", "7.50"},
+                {"Sweet Potato Chicken Salad", "11.50"}
+        }, tab));
 
-        waiter.put("SarahT99", "Sarah Thomas");
-        waiter.put("nicholasRoberts87", "Nicholas Roberts");
-        waiter.put("emmaJ23!", "Emma Johnson");
+        add(createCategory("Entrees", new String[][] {
+                {"Shrimp & Grits", "13.50"},
+                {"Sweet Tea Fried Chicken", "11.50"},
+                {"Grilled Pork Chops", "11.00"},
+                {"120z New York Strip Steak", "17.00"}
+        }, tab));
+    }
 
-        tableAssignments.put("Sarah Thomas", Arrays.asList("T1", "T7", "T8", "T14", "T19"));
-        tableAssignments.put("Nicholas Roberts", Arrays.asList("T3", "T9", "T11", "T15", "T22"));
-        tableAssignments.put("Emma Johnson", Arrays.asList("T13", "T16", "T18", "T24", "T28"));
+    private JPanel createCategory(String category, String[][] menuItems, TableTab tab) {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBorder(BorderFactory.createTitledBorder(category));
 
-        JTextField username = new JTextField();
-        JPasswordField password = new JPasswordField();
-        JButton loginButton = new JButton("Login");
+        for (String[] item : menuItems) {
+            String name = item[0];
+            double price = Double.parseDouble(item[1]);
 
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
-        panel.add(new JLabel("Username:"));
-        panel.add(username);
-        panel.add(new JLabel("Password:"));
-        panel.add(password);
+            JButton button = new JButton(name + " ($" + price + ")");
+            button.addActionListener((ActionEvent e) -> tab.addItem(name, price));
+            panel.add(button);
+        }
 
-        button.add(loginButton);
-
-        add(panel, BorderLayout.CENTER);
-        add(button, BorderLayout.SOUTH);
-
-        loginButton.addActionListener(e -> {
-            String user = username.getText().trim();
-            String pass = new String(password.getPassword()).trim();
-
-            if (loginInfo.containsKey(user) && loginInfo.get(user).equals(pass)) {
-                String waiterName = waiter.get(user);
-                List<String> assignedTables = tableAssignments.get(waiterName);
-                new SeatingArrangement(waiterName, assignedTables);
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid login information", "Login Error", JOptionPane.ERROR_MESSAGE);
-            }
-        });
-
-        setVisible(true);
+        return panel;
     }
 }
