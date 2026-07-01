@@ -1,24 +1,3 @@
-Restaurant Table Management System for Waiters
-
-This is a Java Swing application for waiters to manage their assigned tables by updating the table statuses, enter menu orders for each table, and managing payments from each table.
-
-Features:
--Log in as waiter
--Interact with table layout
--Enter orders for different assigned tables
-
-Waiter login combinations:
-Username: SarahT99
-Password: password1
-
-Username: nicholasRoberts87
-Password: password2
-
-Username: emmaJ23!
-Password: password3
-
-You can run the program from the .jar file.
-
 # Restaurant Management Software System
 
 **A Java Swing desktop application for restaurant staff to manage tables, place orders, and send them to the kitchen, built by a team of five as a semester-long software engineering course project.**
@@ -33,14 +12,14 @@ This project was developed collaboratively by a team of five across a full semes
 
 ## Features
 
-- **Role-based login** — each waiter logs in with their own credentials and sees only their assigned tables on the floor plan
-- **Color-coded seating floor** — 30 tables displayed in a grid, color-coded by status: yellow (occupied), green (available), red (dirty), grey (unassigned)
-- **Table cycling** — clicking an assigned table cycles it through status colors to reflect real-time floor changes
-- **Tabbed menu ordering** — a split-pane ordering window with a tabbed menu (Entrees, Wraps, Burgers, Beverages, Sides) on the left and a live order tab on the right
-- **Sides indentation** — side items are visually indented in the tab to distinguish them from main items
-- **Live tab with automatic pricing** — subtotal, 4% tax, and total update in real time as items are added; clicking a row removes it from the tab
-- **Send to kitchen** — completed orders are dispatched to a shared kitchen queue; the app validates the tab isn't empty before sending
-- **Kitchen queue view** — a separate Kitchen View window shows all pending orders as tabs, each listing the items sent for that order
+- **Role-based login** — each waiter logs in with their own credentials and sees only their assigned tables on the floor plan.
+- **Color-coded seating floor** — 30 tables displayed in a grid, color-coded by status: yellow (occupied), green (available), red (dirty), grey (unassigned).
+- **Table cycling** — clicking an assigned table cycles it through status colors to reflect real-time floor changes.
+- **Tabbed menu ordering** — a split-pane ordering window with a tabbed menu (Entrees, Wraps, Burgers, Beverages, Sides) on the left and a live order tab on the right.
+- **Sides indentation** — side items are visually indented in the tab to distinguish them from main items.
+- **Live tab with automatic pricing** — subtotal, 4% tax, and total update in real time as items are added; clicking a row removes it from the tab.
+- **Send to kitchen** — completed orders are dispatched to a shared kitchen queue; the app validates the tab isn't empty before sending.
+- **Kitchen queue view** — a separate Kitchen View window shows all pending orders as tabs, each listing the items sent for that order.
 
 ## Screenshots
 
@@ -56,19 +35,17 @@ This project was developed collaboratively by a team of five across a full semes
 
 **Requirements:** Java 11 or later
 
-1. Clone or download the repository
-2. Compile all `.java` files from the `src/` directory:
+**Option 1 — Pre-built JAR (recommended):**
+
+Download `SwingApp.jar` from the [latest release](https://github.com/Chris83848/Restaurant-Management-Software-System/releases/latest) and run:
 ```bash
-javac -d out src/*.java
-```
-3. Run the application:
-```bash
-java -cp out Main
+java -jar SwingApp.jar
 ```
 
-Alternatively, if a pre-built JAR is available, run:
+**Option 2 — Build from source:**
 ```bash
-java -jar RestaurantApp.jar
+javac -d out src/*.java
+java -cp out Main
 ```
 
 **Demo login credentials** (waiter accounts):
@@ -115,8 +92,8 @@ Restaurant-Management-Software-System/
 
 This project was built within a full software engineering process. The `/docs` folder contains the original course deliverables:
 
-- **Requirements Document** — 20 functional requirements and 19 non-functional requirements covering all planned staff roles (waiter, host, busboy, chef, manager), plus use case diagrams, class diagrams, ER diagram, and state transition diagrams
-- **System Design Document** — conceptual system design, detailed class diagrams, database table descriptions, and technical support specification
+- **Requirements Document** — 20 functional requirements and 19 non-functional requirements covering all planned staff roles (waiter, host, busboy, chef, manager), plus use case diagrams, class diagrams, ER diagram, and state transition diagrams.
+- **System Design Document** — conceptual system design, detailed class diagrams, database table descriptions, and technical support specification.
 
 These documents reflect the full scope of the originally designed system. The implemented application focuses on the core waiter-facing workflow.
 
